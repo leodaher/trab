@@ -22,7 +22,7 @@ void topologicalSort(Graph * g, int source) {
 
     for(i = 0; i < g->nVert; i++) {
       if(g->matrix[v][i] > 0) {
-        if(!visited[i]) {
+        if(visited[i] == 0) {
           finished++;
           push(s, i);
           visited[i] = 1;
@@ -30,7 +30,7 @@ void topologicalSort(Graph * g, int source) {
       }
     }
 
-    if(finished > 0) {
+    if(finished == 0) {
       sort[last] = v;
       last--;
     }
@@ -48,14 +48,14 @@ void topologicalSort(Graph * g, int source) {
 int main() {
   int n, m, i;
   scanf("%d %d", &n, &m);
-
-  Graph g = initGraph(n);
-
-  for(i = 0; i < m; i ++) {
+  Graph * g = initGraph(n);
+  for(i = 0; i < m; i++) {
     int v1, v2;
     scanf("%d %d", &v1, &v2);
-    insertEdge(&g, v1-1, v2-1, 1);
+    insertEdge(g, v1-1, v2-1, 1);
   }
+
+  topologicalSort(g, 0);
 
 
   return 0;

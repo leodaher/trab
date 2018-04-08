@@ -7,7 +7,7 @@ typedef struct tGraph {
   int nEdge;
 } Graph;
 
-Graph initGraph(int nVert);
+Graph * initGraph(int nVert);
 void insertEdge(Graph * g, int v1, int v2, int weight);
 
 #endif
